@@ -11,8 +11,8 @@ gem 'mongoid'
 
 group :development, :test do
   gem 'pry'
-  gem 'factory_girl_rails'
-  gem 'minitest-rails'
+  gem 'factory_bot_rails'
+  gem 'minitest-spec-rails'
   gem 'mocha'
   gem 'faker'
 end
