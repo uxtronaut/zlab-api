@@ -5,7 +5,7 @@ class Api::SitesController < ApplicationController
   end
 
   def show
-    render json: Site.find(params[:id])
+    render json: Site.find_by(slug: params[:slug])
   end
 
   def create
@@ -20,7 +20,7 @@ class Api::SitesController < ApplicationController
   end
 
   def destroy
-    site = Site.find(params[:id])
+    site = Site.find_by(slug: params[:slug])
 
     if site.destroy
       render json: { message: 'ok' }
