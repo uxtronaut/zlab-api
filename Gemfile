@@ -8,6 +8,7 @@ gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rack-cors'
 gem 'mongoid'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'pry'
