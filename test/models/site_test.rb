@@ -37,7 +37,6 @@ class SiteTest < ActiveSupport::TestCase
   it 'generates a slug from the name' do
     site.slug = nil
     site.save
-    site.must_be :valid?
     site.slug.must_be :present?
   end
 end

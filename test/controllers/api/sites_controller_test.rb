@@ -2,11 +2,20 @@ require 'test_helper'
 
 class Api::SitesControllerTest < ActionDispatch::IntegrationTest
 
-  it 'lists sites with a sites json root' do
+  it 'response ok with a json sites list' do
     get api_sites_url
 
     response.status.must_equal 200
     JSON.parse(response.body).keys.must_include 'sites'
+  end
+
+  it 'responds ok with a json site' do
+    site = create(:site)
+
+    get api_site_url(site)
+
+    response.status.must_equal 200
+    JSON.parse(response.body).keys.must_include 'site'
   end
 
   it 'responds created without errors for valid params' do

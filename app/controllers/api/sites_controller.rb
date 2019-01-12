@@ -4,6 +4,10 @@ class Api::SitesController < ApplicationController
     render json: Site.all
   end
 
+  def show
+    render json: Site.find(params[:id])
+  end
+
   def create
     site = Site.new(site_params)
 
