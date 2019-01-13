@@ -1,4 +1,4 @@
-class Site
+class Environment
   include Mongoid::Document
   include Mongoid::Timestamps
 
@@ -7,8 +7,9 @@ class Site
   field :_id, type: String, default: ->{ SecureRandom.uuid }
   field :slug, type: String
   field :name, type: String
+  field :domain, type: String
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, :domain, presence: true, uniqueness: true
 
-  embeds_many :environments
+  embedded_in :site
 end
