@@ -5,14 +5,14 @@ class Site
   field :_id, type: String, default: ->{ SecureRandom.uuid }
   field :slug, type: String
   field :name, type: String
-  field :domain, type: String
-  field :published_at, type: DateTime
-  field :saved_at, type: DateTime
-  field :favicon, type: String
 
-  validates :slug, :name, :domain, presence: true, uniqueness: true
+  validates :slug, :name, presence: true, uniqueness: true
 
   before_validation :generate_slug
+
+  def to_param
+    slug
+  end
 
   private
   def generate_slug

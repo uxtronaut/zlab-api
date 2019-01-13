@@ -33,8 +33,7 @@ class Api::SitesController < ApplicationController
   protected
   def site_params
     params.require(:site).permit(
-      :name,
-      :domain
+      :name
     )
   end
 

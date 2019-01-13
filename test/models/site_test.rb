@@ -2,28 +2,26 @@ require 'test_helper'
 
 class SiteTest < ActiveSupport::TestCase
   let(:site) { build(:site) }
-  let(:invalid_site) { build(:site, name: nil, slug: nil, domain: nil) }
+  let(:invalid_site) { build(:site, name: nil, slug: nil) }
 
   it 'has a valid factory' do
     site.must_be :valid?
   end
 
-  it 'requires a name, slug, and domain' do
+  it 'requires a name, slug' do
     invalid_site.must_be :invalid?
 
-    [:slug, :name, :domain].each do |attr|
+    [:slug, :name].each do |attr|
       invalid_site.errors[attr].wont_be :empty?
     end
   end
 
-  it 'requires a unique name and domain' do
+  it 'requires a unique name' do
     site.save!
 
-    [:name, :domain].each do |attr|
-      duplicate_site = build(:site, attr => site.send(attr))
-      duplicate_site.must_be :invalid?
-      duplicate_site.errors[attr].wont_be :empty?
-    end
+    duplicate_site = build(:site, name: site.name)
+    duplicate_site.must_be :invalid?
+    duplicate_site.errors[:name].wont_be :empty?
   end
 
   it 'requires a unique slug' do

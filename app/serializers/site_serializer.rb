@@ -1,5 +1,5 @@
 class SiteSerializer < ActiveModel::Serializer
-  attributes :id, :slug, :name, :domain, :errors
+  attributes :id, :slug, :name, :errors
 
   def attributes(*args)
     hash = super

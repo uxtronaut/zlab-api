@@ -21,8 +21,7 @@ class Api::SitesControllerTest < ActionDispatch::IntegrationTest
   it 'responds created without errors for valid params' do
     post api_sites_url, params: {
       site: {
-        name: Faker::Company.name,
-        domain: Faker::Internet.domain_name
+        name: Faker::Company.name
       }
     }
 
