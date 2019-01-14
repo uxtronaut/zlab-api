@@ -1,3 +1,5 @@
 class EnvironmentSerializer < ActiveModel::Serializer
-  attributes :id, :name, :slug, :domain
+  include HasSerializedErrors
+
+  attributes :id, :name, :slug, :domain, :errors
 end

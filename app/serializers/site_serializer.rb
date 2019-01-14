@@ -1,11 +1,7 @@
 class SiteSerializer < ActiveModel::Serializer
+  include HasSerializedErrors
+
   attributes :id, :slug, :name, :errors
 
   has_many :environments
-
-  def attributes(*args)
-    hash = super
-    hash.delete(:errors) if object.errors.keys.empty?
-    hash
-  end
 end
