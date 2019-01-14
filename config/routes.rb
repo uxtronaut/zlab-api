@@ -13,6 +13,16 @@ Rails.application.routes.draw do
         :destroy
       ]
     end
+
+    resources :clusters, param: :slug, only: [
+      :index,
+      :show,
+      :create,
+      :update,
+      :destroy
+    ]
+
+    get 'flynn/releases', to: 'flynn#releases'
   end
 
 end
