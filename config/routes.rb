@@ -22,7 +22,16 @@ Rails.application.routes.draw do
       :destroy
     ]
 
-    get 'flynn/releases', to: 'flynn#releases'
+    resources :jobs, only: [
+      :index,
+      :show
+    ]
   end
+
+  get '/healthcheck', to: proc { [
+    200,
+    { 'Content-Type' => 'application/json' },
+    [{ status: 'ok' }.to_json]
+  ] }
 
 end

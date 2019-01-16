@@ -12,6 +12,8 @@ class Api::ClustersController < ApplicationController
     cluster = Cluster.new(init_cluster_params)
 
     if cluster.save
+      Deploy::Esxi::FlynnClusterJob.perform_later(cluster.id)
+
       render json: cluster, status: :created
       return
     end
@@ -22,7 +24,7 @@ class Api::ClustersController < ApplicationController
   def update
     cluster = Cluster.find_by(slug: params[:slug])
 
-    if cluster.update(new_cluster_params)
+    if cluster.update(cluster_config_params)
       render json: cluster
       return
     end
@@ -61,7 +63,7 @@ class Api::ClustersController < ApplicationController
     )
   end
 
-  def new_cluster_params
+  def cluster_config_params
     params.require(:cluster).permit(
       :tls_pin,
       :private_key,
