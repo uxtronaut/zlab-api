@@ -10,6 +10,7 @@ gem 'rack-cors'
 gem 'mongoid'
 gem 'active_model_serializers'
 gem 'rest-client'
+gem 'sidekiq'
 
 group :development, :test do
   gem 'pry'
